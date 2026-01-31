@@ -41,6 +41,12 @@
     #f8fafc;
 }
 
+/* Mobile-safe layout defaults */
+.gr-page,
+.gr-page * {
+  box-sizing: border-box;
+}
+
 .gr-card {
   max-width: 820px;
   margin: 0 auto;
@@ -82,7 +88,7 @@
   border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 14px;
   padding: 10px;
-  
+
   box-shadow: var(--gr-shadow-soft);
 }
 
@@ -91,6 +97,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
+  flex-wrap: wrap;
   margin-bottom: 12px;
 }
 
@@ -131,7 +138,7 @@
 }
 
 .gr-input {
-  width: 95%;
+  width: 100%;
   padding: 12px 12px;
   font-size: 14px;
   border: 1px solid var(--gr-border);
@@ -142,6 +149,11 @@
     border-color 0.15s ease,
     box-shadow 0.15s ease,
     transform 0.08s ease;
+}
+
+.gr-input,
+.gr-button {
+  touch-action: manipulation;
 }
 
 .gr-input::placeholder {
@@ -242,4 +254,37 @@
   color: rgba(71, 85, 105, 0.9);
   pointer-events: none;
   user-select: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .gr-page {
+    padding: 18px 12px 92px;
+  }
+
+  .gr-card {
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .gr-title {
+    font-size: 24px;
+  }
+
+  .gr-subtitle {
+    font-size: 13px;
+  }
+
+  .gr-section {
+    padding: 12px;
+  }
+
+  .gr-member {
+    padding: 12px;
+  }
+
+  /* Prevent iOS Safari from zooming on focus by keeping >=16px */
+  .gr-input {
+    font-size: 16px;
+  }
 }
