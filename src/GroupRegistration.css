@@ -245,7 +245,7 @@
 }
 
 .gr-watermark {
-  position: fixed;
+  position: relative;
   left: 0;
   right: 0;
   bottom: 12px;
@@ -254,6 +254,7 @@
   color: rgba(71, 85, 105, 0.9);
   pointer-events: none;
   user-select: none;
+  margin-top: 35px;
 }
 
 /* Responsive tweaks */
