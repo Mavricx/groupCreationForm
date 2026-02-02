@@ -77,6 +77,18 @@
   font-size: 14px;
 }
 
+.gr-closedBanner {
+  margin: 14px auto 0;
+  max-width: 680px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(254, 226, 226, 0.75);
+  color: #991b1b;
+  border: 1px solid rgba(252, 165, 165, 0.95);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .gr-form {
   display: flex;
   flex-direction: column;
@@ -131,8 +143,6 @@
   gap: 6px;
 }
 
-
-
 .gr-label {
   font-size: 13px;
   font-weight: 600;
@@ -164,6 +174,12 @@
 
 .gr-input:hover {
   border-color: var(--gr-border-strong);
+}
+
+.gr-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.85;
+  background: rgba(241, 245, 249, 0.85);
 }
 
 .gr-input:focus {

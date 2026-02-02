@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./GroupRegistration.css";
 
 const GroupRegistration = () => {
+  const REGISTRATION_CLOSED = true;
+  const REGISTRATION_CLOSED_MESSAGE =
+    "No more registration allowed contact authority..";
+
   // REPLACE THIS WITH YOUR ACTUAL APPS SCRIPT URL
   const APPS_SCRIPT_URL = import.meta.env?.VITE_APPS_SCRIPT_URL;
 
@@ -76,6 +80,11 @@ const GroupRegistration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (REGISTRATION_CLOSED) {
+      setMessage({ text: REGISTRATION_CLOSED_MESSAGE, type: "error" });
+      return;
+    }
+
     if (!validateForm()) return;
 
     setLoading(true);
@@ -128,6 +137,10 @@ const GroupRegistration = () => {
           <p className="gr-subtitle">
             Register your team of 4 students (1 Leader + 3 Members)
           </p>
+
+          {REGISTRATION_CLOSED && (
+            <div className="gr-closedBanner">{REGISTRATION_CLOSED_MESSAGE}</div>
+          )}
         </div>
 
         <form onSubmit={handleSubmit} className="gr-form">
@@ -149,6 +162,7 @@ const GroupRegistration = () => {
                   value={formData.leaderName}
                   onChange={handleInputChange}
                   required
+                  disabled={loading || REGISTRATION_CLOSED}
                   className="gr-input"
                   placeholder="Enter leader's full name"
                 />
@@ -162,6 +176,7 @@ const GroupRegistration = () => {
                   value={formData.leaderRegNo}
                   onChange={handleInputChange}
                   required
+                  disabled={loading || REGISTRATION_CLOSED}
                   className="gr-input"
                   placeholder="e.g., 22410..."
                 />
@@ -189,6 +204,7 @@ const GroupRegistration = () => {
                     name="member1Name"
                     value={formData.member1Name}
                     onChange={handleInputChange}
+                    disabled={loading || REGISTRATION_CLOSED}
                     className="gr-input"
                     placeholder="Enter member's full name"
                   />
@@ -201,6 +217,7 @@ const GroupRegistration = () => {
                     name="member1RegNo"
                     value={formData.member1RegNo}
                     onChange={handleInputChange}
+                    disabled={loading || REGISTRATION_CLOSED}
                     className="gr-input"
                     placeholder="e.g., 22410..."
                   />
@@ -219,6 +236,7 @@ const GroupRegistration = () => {
                     name="member2Name"
                     value={formData.member2Name}
                     onChange={handleInputChange}
+                    disabled={loading || REGISTRATION_CLOSED}
                     className="gr-input"
                     placeholder="Enter member's full name"
                   />
@@ -231,6 +249,7 @@ const GroupRegistration = () => {
                     name="member2RegNo"
                     value={formData.member2RegNo}
                     onChange={handleInputChange}
+                    disabled={loading || REGISTRATION_CLOSED}
                     className="gr-input"
                     placeholder="e.g., 22410..."
                   />
@@ -249,6 +268,7 @@ const GroupRegistration = () => {
                     name="member3Name"
                     value={formData.member3Name}
                     onChange={handleInputChange}
+                    disabled={loading || REGISTRATION_CLOSED}
                     className="gr-input"
                     placeholder="Enter member's full name"
                   />
@@ -261,6 +281,7 @@ const GroupRegistration = () => {
                     name="member3RegNo"
                     value={formData.member3RegNo}
                     onChange={handleInputChange}
+                    disabled={loading || REGISTRATION_CLOSED}
                     className="gr-input"
                     placeholder="e.g., 22410..."
                   />
@@ -271,8 +292,16 @@ const GroupRegistration = () => {
 
           {/* Submit Button */}
           <div className="gr-actions">
-            <button type="submit" disabled={loading} className="gr-button">
-              {loading ? "Submitting..." : "Register Group"}
+            <button
+              type="submit"
+              disabled={loading || REGISTRATION_CLOSED}
+              className="gr-button"
+            >
+              {REGISTRATION_CLOSED
+                ? "Registration Closed"
+                : loading
+                  ? "Submitting..."
+                  : "Register Group"}
             </button>
           </div>
 
@@ -297,4 +326,3 @@ const GroupRegistration = () => {
 };
 
 export default GroupRegistration;
-
